@@ -95,5 +95,7 @@ Border Gateway Protocol (BGP) is the routing protocol that exchanges reachabilit
 == Related information
 
 * https://www.rfc-editor.org/info/rfc8435/[RFC 8435: Parallel NFS (pNFS) Flexible File Layout^]
+* https://www.rfc-editor.org/info/rfc7862/[RFC 7862: Network File System (NFS) Version 4 Minor Version 2 Protocol^]
+* https://www.rfc-editor.org/info/rfc8178/[RFC 8178: Rules for NFSv4 Extensions and Minor Versions^]
 * https://www.rfc-editor.org/info/rfc8881/[RFC 8881: Network File System (NFS) Version 4 Minor Version 1 Protocol^]
 * https://www.rondb.com/[RonDB^]
