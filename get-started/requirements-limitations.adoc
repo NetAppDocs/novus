@@ -43,9 +43,6 @@ Support is limited to one data SVM per cluster.
 Protocols::
 The ONTAP data path supports NFSv3 only. Other protocols (NFSv4, SMB, S3, SAN protocols) are not supported on the ONTAP data path in the initial release.
 
-Client access model::
-Clients connect through the Novus Data Directors using NFSv4 based on Parallel NFS (pNFS). The clients can access the actual data directly from the ONTAP data servers using NFSv3.
-
 == Novus Data Director
 
 The Novus Data Director (NDD) is an implementation of the metadata server (MDS) as defined in the Parallel NFS (pNFS) architecture. It's a software-defined package running on properly configured server.
@@ -61,7 +58,7 @@ Each tenant is isolated on its own VLAN and VRF.
 
 == Novus clients
 
-Novus clients are standard NFS clients that connect to the Novus Data Directors using NFSv4 (v4.2) with pNFS and Flex Files support. They do not require any custom software or modifications beyond what is specified in the client requirements.
+Novus clients are standard NFS clients that connect to the Novus Data Directors using NFSv4 (v4.2) with pNFS and Flex Files support. The clients access the actual data directly at the ONTAP data servers using NFSv3. No additional or custom software is needed beyond what is specified in the standard NFS client requirements.
 
 == Related information
 
