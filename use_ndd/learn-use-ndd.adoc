@@ -68,7 +68,7 @@ Clients, tenants and add-on processes::
 
 == Getting started using the NDD CLI
 
-You can issue a few basic `mds-admin` commands to get started.
+You can issue a few basic commands to get started.
 
 .About this task
 

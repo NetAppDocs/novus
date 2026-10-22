@@ -18,7 +18,6 @@ There are additional resources you can access to help administer and support Nov
 == ONTAP documentation
 
 * https://docs.netapp.com/us-en/ontap/[Unified ONTAP^]
-* https://docs.netapp.com/us-en/asa-r2/[ASA r2^]
 * https://docs.netapp.com/us-en/ontap-automation/[ONTAP automation^]
 
 == NetApp support

@@ -65,6 +65,6 @@ Novus clients are standard NFS clients that connect to the Novus Data Directors 
 
 == Related information
 
-* link:../faq-novus.html[FAQ for Novus systems]
+* link:../faq-novus.html[FAQ for Novus storage systems]
 * https://hwu.netapp.com/[NetApp Hardware Universe^]
 * https://imt.netapp.com/[Interoperability Matrix Tool^]

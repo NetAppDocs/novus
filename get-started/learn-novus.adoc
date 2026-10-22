@@ -71,7 +71,7 @@ The ONTAP data server implements the Novus data plane. It stores file data and s
 Novus Data Director (NDD)::
 The Novus Data Director provides the Novus metadata plane. It manages the namespace metadata, handles client requests for metadata operations, and provides clients with layouts that describe where file data is stored across the ODS clusters. Clients interact with the NDD using NFSv4.2 with pNFS, while the actual file data is accessed directly from the ODS clusters.
 
-Review the link:../get-started/novus-architecture.html[Novus architecture] for more details about these components.
+Review the link:../get-started/novus-architecture.html[Novus architecture] for more details about these components and how the work together.
 
 == Additional technology and concepts
 
