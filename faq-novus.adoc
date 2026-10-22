@@ -31,19 +31,19 @@ Yes, NFS Flex Files are supported. For Flex Files with wide striping, you need a
 
 Standard pNFS works with Ubuntu 24.04 or RHEL.
 
-.Does Novus support multitenancy? 
-
-Yes--Novus provide secure multitenancy using:
-
-* Namespace isolation at Metadata layer
-* Network isolation through Subnet/VLAN
-* Node Pools: dedicated Data Director, name space and KVS
-* Identity provider and encryption key management per tenant
-* Dedicated Data Servers for tenants 
-
 .Does Novus require a custom file system client?
 
 No. Novus works with standard NFS clients.
+
+.Does Novus support multitenancy? 
+
+Yes--Novus provides secure multitenancy using:
+
+* Namespace isolation at metadata layer
+* Network isolation through Subnet/VLAN
+* Node pools: dedicated Data Director, name space, and KVS
+* Identity provider and encryption key management per tenant
+* Dedicated Data Servers for tenants 
 
 .What is the maximum storage capacity for a Novus cluster?
 
@@ -51,4 +51,4 @@ The initial Novus release supports a cluster size up to 600 AFF A90 instances fo
 
 .How is metadata partitioned and protected across Novus Data Directors?
 
-Metadata is sharded across node groups, and triple replicated within each node group. A node group is three Data Directors, which is why the metadata layer is always expanded in multiples of three. Sharding is by key range — for example one node group holds keys A through N and another holds M through Z — so as node groups are added the metadata tables are partitioned across the wider set.
+Metadata is sharded across node groups, and triple replicated within each node group. A node group is three Data Directors, which is why the metadata layer is always expanded in multiples of three. Sharding is by key range--for example, one node group holds keys A through N and another holds M through Z--so as node groups are added the metadata tables are partitioned across the wider set.

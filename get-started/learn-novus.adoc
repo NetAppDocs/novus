@@ -86,6 +86,9 @@ Federation is a technique for connecting independent systems so they can work to
 RonDB::
 RonDB is an open-source, distributed, in-memory database designed for high availability and low-latency access to operational data. It supports horizontal scaling and fault tolerance, helping applications maintain performance and availability as workloads grow. The Novus Data Director uses RonDB as its underlying distributed database. The PMDB gateway is an internal Novus component that facilitates communication between the Novus Data Director and the RonDB distributed database.
 
+Sharding::
+Sharding is a technique for splitting a database’s data across multiple servers, with each server (or shard) storing and serving a portion of the data. It improves capacity and performance by distributing storage and the query load, but can also add complexity to data placement and cross-shard queries.
+
 Border Gateway Protocol::
 Border Gateway Protocol (BGP) is the routing protocol that exchanges reachability information between autonomous systems—the networks that make up the internet—and selects paths using routing policies and attributes. It may be chosen when an organization needs scalable, policy-controlled routing between multiple networks or internet providers, such as for multihoming or traffic engineering. Novus relies on BGP to support its multi-tenant architecture.
 

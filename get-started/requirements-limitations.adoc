@@ -59,7 +59,12 @@ Three Novus Data Directors in three separate failure domains supporting at least
 Networking::
 Each tenant is isolated on its own VLAN and VRF.
 
+== Novus clients
+
+Novus clients are standard NFS clients that connect to the Novus Data Directors using NFSv4 (v4.2) with pNFS and Flex Files support. They do not require any custom software or modifications beyond what is specified in the client requirements.
+
 == Related information
 
+* link:../faq-novus.html[FAQ for Novus systems]
 * https://hwu.netapp.com/[NetApp Hardware Universe^]
 * https://imt.netapp.com/[Interoperability Matrix Tool^]
