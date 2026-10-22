@@ -1,0 +1,54 @@
+---
+sidebar: sidebar
+permalink: faq-novus.html
+keywords: novus, novus system, faq, frequently asked questions
+summary: "This FAQ list provides answers to questions you might have about your Novus storage system. It also includes concepts and terminology that can be helpful when exploring Novus in more detail."
+---
+
+= FAQ for Novus storage systems
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/
+
+[.lead]
+This FAQ list provides answers to questions you might have about your Novus storage system. It also includes concepts and terminology that can be helpful when exploring Novus in more detail.
+
+.What protocols does NetApp Novus support?
+
+Novus supports the following protocols:
+
+* pNFS with NFS v4.2 (required for pNFS Flex Files)
+* NFS over RDMA
+* NVIDIA GPUDirect 
+
+.Does Novus support NFS Flex Files? 
+
+Yes, NFS Flex Files are supported. For Flex Files with wide striping, you need an NFS client in the supported Linux distribution. As of October 20206, only the NFS client provided with Ubuntu 26.04 supports wide striping.
+
+.What are the NFS client requirements for Novus? 
+
+Standard pNFS works with Ubuntu 24.04 or RHEL.
+
+.Does Novus support multitenancy? 
+
+Yes--Novus provide secure multitenancy using:
+
+* Namespace isolation at Metadata layer
+* Network isolation through Subnet/VLAN
+* Node Pools: dedicated Data Director, name space and KVS
+* Identity provider and encryption key management per tenant
+* Dedicated Data Servers for tenants 
+
+.Does Novus require a custom file system client?
+
+No. Novus works with standard NFS clients.
+
+.What is the maximum storage capacity for a Novus cluster?
+
+The initial Novus release supports a cluster size up to 600 AFF A90 instances for a Novus system. The total storage limit for a cluster depends on the size of the drives used.
+
+.How is metadata partitioned and protected across Novus Data Directors?
+
+Metadata is sharded across node groups, and triple replicated within each node group. A node group is three Data Directors, which is why the metadata layer is always expanded in multiples of three. Sharding is by key range — for example one node group holds keys A through N and another holds M through Z — so as node groups are added the metadata tables are partitioned across the wider set.

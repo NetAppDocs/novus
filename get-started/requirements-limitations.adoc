@@ -1,0 +1,65 @@
+---
+sidebar: sidebar
+permalink: get-started/requirements-limitations.html
+keywords: 
+summary: ""
+---
+
+= Novus requirements and limitations
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+You should be aware of the Novus requirements and limitations which generally fall into two categories.
+
+[TIP]
+Also review the product requirements and restrictions at the NetApp Hardware Universe and Interoperability Matrix Tool for more information.
+
+== ONTAP data server
+
+There are several requirements and restrictions for the ONTAP data server (ODS) used with Novus. For the initial product release, the ODS is an ONTAP-based AFF platform with Novus-specific hardware enhancements and a constrained software and configuration profile. The supported design is intentionally limited at launch with the major requirements and limitations explicitly identified.
+
+Platform summary::
+ONTAP data server must be deployed on the *AFF A90 FOR NetApp Novus*. This is a special A90 configuration with Novus-specific manufacturing and platform settings. Existing ONTAP controllers cannot be repurposed or upgraded to become a Novus ODS platform.
+
+ONTAP details::
+ONTAP 9.19.1 P91 or later is required, based on a modified version of the unified ONTAP personality (AFX and ASA r2 are not supported).
+
+Licensing::
+Novus uses ONTAP ONE. No additional licensing is required.
+
+NVRAM and base hardware::
+The ODS requires two NVRAM cards rather than the standard single-card configuration. The system must use the Novus-enabled AFF A90 hardware build, including a factory configuration that identifies the dual-NVRAM ODS-capable variant.
+
+Network hardware::
+The ODS requires CX-7 network cards supporting 400G front-end, 400G HA back-to-back, and 100G cluster back-to-back connectivity.
+
+Cluster size and HA::
+The supported ODS deployment is a single HA pair, implemented as a two-node switchless cluster.
+
+SVM requirement::
+Support is limited to one data SVM per cluster.
+
+Protocols::
+The ONTAP data path supports NFSv3 only. Other protocols (NFSv4, SMB, S3, SAN protocols) are not supported on the ONTAP data path in the initial release.
+
+Client access model::
+Clients connect through the Novus Data Directors using NFSv4 based on Parallel NFS (pNFS). The clients can access the actual data directly from the ONTAP data servers using NFSv3.
+
+== Novus Data Director
+
+The Novus Data Director (NDD) is an implementation of the metadata server (MDS) as defined in the Parallel NFS (pNFS) architecture. It's a software-defined package running on properly configured server.
+
+Host platform summary::
+A server the customer or a partner provides that meet NetApp Novus-specific hardware and firmware configurations. Bare metal is the default for the initial release. The hosts need to run RHEL 9 with NVMe drives in RAID1 (2 drives) or RAID10 (4 to 12 drives).
+
+Minimum cluster deployment::
+Three Novus Data Directors in three separate failure domains supporting at least one ONTAP HA pair. Each tenant has its own database cluster with three copies of the data (one on each host).
+
+Networking::
+Each tenant is isolated on its own VLAN and VRF.
+
+== Related information
+
+* https://hwu.netapp.com/[NetApp Hardware Universe^]
+* https://imt.netapp.com/[Interoperability Matrix Tool^]

@@ -1,0 +1,86 @@
+---
+sidebar: sidebar
+permalink: get-started/novus-environment-processing.html
+keywords: 
+summary: ""
+---
+
+= Novus environment and processing
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+There are several important aspects of the Novus environment and its processing that you should understand.
+
+== Novus NDD and ODS internal communication
+
+The Novus Data Directors communicate with the ONTAP data servers to support file access and management. Most of this is initiated by the NDD rather than the ONTAP servers.
+
+=== ODS discovery
+
+The Novus Data Directors needs to discover what data servers are available. ONTAP never initiates communication with the Novus Data Director. An operator or a tool registers each data server, through the `mds.conf` file which is used at startup install time; data servers can also be manually added using the commands `mds-admin ds add`. Each data server is represented as a row in the RonDB DS registry including its host, export, ports, state and capacity.
+
+=== ODS availability
+
+There are several processes used to determine the availability of each ONTAP data server.
+
+Heartbeat::
+The MDS sends an NFSv3 NULL RPC call over TCP to each online data server. By default it does this every 5 seconds using a heartbeat message.
+
+Going offline::
+After a set number of failures in a row, the data server is marked as offline. The MDS stops placing new files on it and informs clients to give back layouts that point to it.
+
+Coming back::
+After enough successful probes in succession, it returns to online. A cool down period stops it from flipping back and forth.
+
+Client errors don't count::
+When a client reports an error it's only logged. ODS health is decided by the probes alone.
+
+ONTAP failover is invisible::
+If an ONTAP HA pair does a takeover, the MDS only notices through probe timeouts.
+
+=== ODS data content
+
+The NDD doesn't ask ONTAP what's stored there. It already knows, because it creates every backing file.
+
+* When a file is created, the MDS picks the data servers, creates the backing files on them, and saves the result in the stripe map in RonDB. The stripe map records which data server and NFS file handle hold each stripe and mirror.
+
+* Backing files on ONTAP have a specific name format in the NDD.
+
+* Capacity is the only operational value the NDD reads from ONTAP using statvfs() on each mounted export.
+
+* File size isn't verifed against ONTAP. It's determined from the client's layout commit. LAYOUTCOMMIT.
+
+== High-availability and resiliency for the NDD cluster
+
+The metadata plane anchored by the Novus Data Directors ensures high availability and resilience in the system.
+
+=== Cluster design
+
+Novus uses a multi-host cluster to ensure high availability and fault tolerance for the NDD services.
+
+Three hosts with three failure domains::
+The minimum is three physical hosts or virtual machines (VMs) deployed on separate servers. Each host runs one MDS process and one RonDB data node. The cluster is designed to survive the loss of one host.
+
+All replicas serve::
+Every MDS replica handles clients at the same time with none designated in standby mode. All healthy replicas announce the same VIP through BGP. BFD (fast link-failure detection) is required because BGP's own timers alone are not a completely acceptable failover mechanism. A replica announces the VIP only when its NFS service, gateway and RonDB connection are all ready.
+
+Metadata replication::
+RonDB keeps three synchronous copies. An arbitrator prevents a split-brain scenario by choosing to go unavailable rather than letting two sides both write.
+
+Restarts are safe::
+MDS processes keep no state of their own; RonDB holds the authoritative metadata.
+
+=== Limitations and cautions
+
+You should also be aware of the following limitations and cautions:
+
+* Subtree ownership doesn't fail over automatically. The namespace can be split into subtrees, each owned by one MDS. If an owner fails, its subtree hangs until the owner comes back, even though the VIP has already moved.
+* One host failure affects every tenant on that host because each tenant has one replica per host.
+* Clients must mount the VIP and not a host IP. Otherwise the client can't fail over.
+* Hard mounts may block during recovery. A blocked mount doesn't mean data was lost.
+* Always perform maintenance one replica at a time. Take the replica out of the VIP and drain it first.
+
+//== Tenancy and multi-tenancy
+//== Networking
+//== Security considerations

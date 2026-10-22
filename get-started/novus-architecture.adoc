@@ -1,0 +1,46 @@
+---
+sidebar: sidebar
+permalink: get-started/novus-architecture.html
+keywords: 
+summary: ""
+---
+
+= Novus architecture
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+The Novus architecture consists of instances of the Novus Data Director (NDD) and ONTAP data server (ODS). The ODS supports the data path while the NDD manages metadata and client access through Parallel NFS (pNFS). The following diagram illustrates the overall architecture at a high level.
+
+== ONTAP data server
+
+The ONTAP data server (ODS) implements the Novus data plane. An ODS is an ONTAP cluster specially built for Novus that stores file data and serves it to NFS clients. A Novus namespace can spread its file data across several ODS clusters, and one ODS cluster can serve many namespaces. This flexibility enables capacity and performance to grow by adding data servers as needed.
+
+Clients access the ODS using a standard NFS client with no need for custom NetApp software. After a client gets a file layout from the Novus Data Director, it can read and write file data directly on the ODS over NFSv3 and optionally over RDMA. Bulk data never passes through the Novus Data Director and so data traffic travels in parallel across the data servers.
+
+The ODS doesn't take part in managing the namespace. It stores each file's data as backing files in ONTAP volumes. An ODS doesn't maintain the Novus namespace metadata, such as the directory tree or how files are striped across data servers. 
+
+The ODS platform for the initial Novus release is the AFF A90 for NetApp Novus; this is a version of the AFF A90 built for Novus. It's characteristics includes:
+
+* Additional dual NVRAM cards
+* High-bandwidth network adapters
+* Configured as a standard ONTAP HA pair
+* Protects data with RAID-DP or RAID-TEC.
+
+Standard ONTAP clusters can't be used as Novus data servers; only platforms specifically built for Novus are supported.
+
+== Novus Data Director
+
+The Novus Data Director (NDD) provides the Novus metadata plane. It's an implementation of the pNFS metadata server (MDS) role in Novus. An MDS host with Novus is one physical server running Linux plus the MDS protocol services and metadata stores.
+
+The NDD presents each namespace to clients as a single file system. It owns the namespace metadata: files and directories, file attributes, the map of where each file's data is stored, and the protocol state needed to coordinate client access. Clients mount a namespace through its virtual IP address and talk to the NDD using NFSv4.2 with parallel NFS (pNFS). The NDD handles all the metadata operations such as lookups, file creates, and attribute changes. When a client opens a file, the NDD gives it a pNFS Flexible File layout, which instructs the client which data servers hold the file data. The client can then do its reads and writes directly with those ODS clusters; the NDD is in the metadata path but not the data path.
+
+The NDD is implemented assoftware that runs on a cluster of at least three dedicated servers. It combines the metadata server processes with a replicated, distributed database that stores the namespace metadata on encrypted local storage. Each namespace runs its own metadata server processes on several of these servers. All healthy servers announce the namespace's virtual IP address, which spreads the client load and lets clients fail over without remounting. Because the authoritative metadata lives in the replicated database, a server can fail and restart without losing the namespace state.
+
+The placement of data on the ODS clusters is controlled by the NDD. It keeps a registry of data servers, checks that each one is available with lightweight NFS probes, and tracks the free capacity on each. When a file is created, the NDD chooses the data servers, creates the backing files over NFS, and records their locations. If a data server becomes unavailable, the NDD stops placing new data there and recalls client layouts that point to it.
+
+== Novus deployment
+
+The following figure illustrates a typical Novus deployment at a high level. Notable aspects include a single namespace with multiple Novus Data Directors and ONTAP data server nodes. This architecture provides high availability and low latency in support of the backend GPU servers.
+
+image:novus_arch1.png[Novus architecture]

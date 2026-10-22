@@ -1,0 +1,20 @@
+---
+sidebar: sidebar
+permalink: release-notes/whats-new-current.html
+keywords: 
+summary: ""
+---
+
+= What's new in the initial Novus release
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Learn about the new capabilities included with NetApp Novus.
+
+== Novus initial release
+
+NetApp Novus is a storage solution built on a new architecture based on Parallel NFS (pNFS) with ONTAP data servers. It's designed for leading-edge throughput and low latency to meet the requirements of customers with exascale computing and gigawatt-scale AI factories. Review the following pages to learn more about its architecture and deployment requirements.
+
+* link:../get-started/learn-novus.html[Learn about Novus]
+* link:../get-started/requirements-limitations.html[Novus requirements and limitations]

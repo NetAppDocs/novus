@@ -1,5 +1,5 @@
 settings:
-  name: "Product Name"
+  name: Novus
   internal:
     pdf_enabled: true
   prod:
@@ -8,5 +8,13 @@ settings:
 
 sidebar: 
   entries:
+  - title: Novus docs
+    url: /index.html
+  - section: release-notes
+  - section: get-started
+  - section: use_ndd
+  - section: learn-more
+  - title: FAQ
+    url: /faq-novus.html
   - title: Legal notices
     url: /legal-notices.html
