@@ -15,6 +15,8 @@ summary: "This FAQ list provides answers to questions you might have about your 
 [.lead]
 This FAQ list provides answers to questions you might have about your Novus storage system. It also includes concepts and terminology that can be helpful when exploring Novus in more detail.
 
+[big red]*Is the first entry accurate and needed?*
+
 .What protocols does NetApp Novus support?
 
 Novus supports the following protocols:
@@ -25,7 +27,7 @@ Novus supports the following protocols:
 
 .Does Novus support NFS Flex Files? 
 
-Yes, NFS Flex Files are supported. For Flex Files with wide striping, you need an NFS client in the supported Linux distribution. As of October 20206, only the NFS client provided with Ubuntu 26.04 supports wide striping.
+Yes, NFS Flex Files are supported. For Flex Files with wide striping, you need an NFS client in a supported Linux distribution. As of October 2026, only the NFS client provided with Ubuntu 26.04 supports wide striping.
 
 .What are the NFS client requirements for Novus? 
 
@@ -40,8 +42,8 @@ No. Novus works with standard NFS clients.
 Yes--Novus provides secure multitenancy using:
 
 * Namespace isolation at metadata layer
-* Network isolation through Subnet/VLAN
-* Node pools: dedicated Data Director, name space, and KVS
+* Network isolation through subnet/VLAN
+* Node pools: dedicated Novus Data Director, name space, and KVS
 * Identity provider and encryption key management per tenant
 * Dedicated Data Servers for tenants 
 

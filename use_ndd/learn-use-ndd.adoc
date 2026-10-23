@@ -14,23 +14,23 @@ The Novus Data Directors (NDD) anchor the Novus metadata layer, managing the dis
 
 == Novus command line interface
 
-You administer the Novus Data Director from the Linux command line of one of its MDS hosts. Administrators can connect to an MDS host locally or over SSH. There are two primary command-line interface tools.
+You administer the Novus Data Director from the Linux command line interface of one of the active MDS hosts. You can connect to an MDS host locally or over SSH. There are two primary tools available at the NDD command-line interface.
 
 mds-admin::
-Operates on a single node instance (one namespace) in several different areas described below. The command connects to the pnfs-mds admin endpoint, port 50051 by default.
+Operates on a single node instance (one namespace) in several different areas described below. The command connects to the pnfs-mds admin endpoint (port 50051 by default).
 
 ndd-admin::
-Operates on the entire NDD deployment (all hosts and namesspaces). The command prepares hosts, provisions namespaces, and handles day-two tasks such as backup and restore, key rotation and upgrades. It runs mds-admin commands on your behalf as needed.
+Operates on the entire NDD deployment (all hosts and namespaces). You can prepare hosts, provision namespaces, and handle administration and maintenance tasks such as backup and restore as well as key rotation and upgrades. It runs `mds-admin` commands on your behalf as needed.
 
-== Use the `mds-admin` comand to perform Novus administration
+== Use `mds-admin` to perform Novus administration
 
 You can use the NDD CLI to perform various administrative tasks on the Novus Data Director. These tasks fall into several categories.
 
 [CAUTION]
-Use caution when executing commands at the NDD. Some commands may change system state or carry higher risks. Others, such as the node commands (`force-remove`, `subtree-unlink`, `backup restore`) can cause damage.
+Use caution when executing commands at the NDD. Some commands can change system state or carry higher risks. Others, such as the node commands (`force-remove`, `subtree-unlink`, `backup restore`), can cause damage.
 
 Health, diagnostics and support::
-* Determine the cluster status
+* Determine the NDD cluster status
 * Collect a support bundle and print the protocol version
 * Clean up files and records left behind by any crashes
 * Check or repair the log of `mds-admin` actions
@@ -49,7 +49,7 @@ Data server (ONTAP backend) management::
 * Claim ownership markers on exports, and keep the inventory of data-server hosts
 
 Data placement and protection::
-* Find which data server holds a file, then move it, remap it or add a mirror
+* Find which data server holds a file, then move it, remap it, or add a mirror
 * Repair mirrors onto a data server, move mirrors between data servers, and backfill files to the target mirror count
 * Manage the pool of files created ahead of time
 * Turn tiering on or off
@@ -58,12 +58,12 @@ Data placement and protection::
 Namespace policy and data management::
 * Set quotas
 * Add metadata tags to paths and search by tag
-* Back up, verify and restore the metadata catalogue
+* Back up, verify, and restore the metadata catalogue
 
 Clients, tenants and add-on processes::
 * Force client sessions to expire, clean up client recovery records, and manage client identity records
 * Handle VIP routing after recovery
-* Create, pause, resume, snapshot, restore, migrate and limit tenants
+* Create, pause, resume, snapshot, restore, migrate, and limit tenants
 * Register and limit the resources of helper ("companion") processes
 
 == Getting started using the NDD CLI

@@ -18,19 +18,19 @@ NetApp Novus is a scale-out file storage system solution designed for the throug
 
 A Novus deployment can grow simply by adding storage clusters. Each new cluster adds its full bandwidth and capacity to the namespace, so total throughput increases as the system grows without client remounts or disruptive rebalancing. The metadata service scales separately from the data servers, so you can expand namespace size and metadata performance to fit the workload. Novus is designed to run each storage node at full speed and to treat component failures as routine and non-disruptive at large scale. The primary goal is to keep data flowing to compute even as the system grows to very large sizes.
 
-Clients use a standard NFS client with no need for any NetApp software. This makes Novus simple to adopt on large GPU and compute clusters. And Novus is multi-tenant, so that one deployment can host several isolated customers or workloads, each with its own separate namespaces. It also builds on ONTAP's proven data management and protection. For customers, this means storage that can keep the GPUs busy, lower infrastructure cost by getting more performance from each node, and support very large datasets in a single namespace.
+Clients use a standard NFS client, making Novus simple to adapt to large GPU and compute clusters. And Novus is multi-tenant, so that one deployment can host several isolated customers or workloads, each with its own separate namespaces. It also builds on ONTAP's proven data management and protection. For customers, this means storage that can keep the GPUs busy, lower infrastructure cost by getting more performance from each node, and support very large datasets in a single namespace.
 
 Novus can help organizations that run AI and other data-intensive workloads at scale. This typically includes neoclouds, GPU-as-a-service providers, sovereign clouds, hyperscalers, as well as large enterprises and research organizations running AI training and inference. Novus can benefit any customer using high-performance computing or media processing that needs multiple terabytes per second of throughput and want to scale storage alongside their compute.
 
 == System design principles
 
-Novus has been designed and built based on several core principles. These underlying architectural choices drive its performance, scalability, and resilience. This helps customers that need high-performance storage that keeps the GPU busy and reduce infrastructure cost.
+Novus has been designed and built based on several core principles. These underlying architectural choices drive its performance, scalability, and resilience. This helps customers that need high-performance storage that keeps the GPU busy and reduce infrastructure expenses.
 
 Exascale-ready storage::
 Novus is designed to be an exascale ready software defined storage foundation stack. It combines horizontally scaled pNFS metadata servers with separate and disaggregated data servers.
 
-Throughput beyond one cluster's limit::
-A single ONTAP cluster reaches a fixed throughput ceiling as set by its controller count and interconnect bandwidth. AI training and inference need throughput which a single cluster cannot reach.
+Throughput beyond traditional ONTAP cluster limits::
+Traditionally, a single ONTAP cluster reaches a fixed throughput ceiling as set by its controller count and interconnect bandwidth. AI training and inference need throughput which a single ONTAP cluster cannot reach.
 
 Scale by adding clusters::
 Novus joins many independent ONTAP clusters, each as small as one HA pair, into a single namespace. Each new cluster contributes its full bandwidth and so the total throughput grows linearly. Clients don't need to remount and the fleet doesn't need rebalancing.
@@ -42,7 +42,7 @@ Line-rate data nodes::
 Each data node should run at full NIC speed for reads and full NVMe speed for writes. Any unused per-node throughput appears as just extra hardware and cost.
 
 Resiliency as the main design constraint::
-At the scale of 1,000 or more storage nodes, failures are not uncommon. Given this, resiliency is a primary design constraint and not an operational afterthought.
+At the scale of 1,000 or more storage nodes, failures are not uncommon. Resiliency is a primary design constraint and not an operational afterthought.
 
 == Network File System (NFS) implementation
 
@@ -52,7 +52,7 @@ Novus is a software-defined implementation of the Network File System (NFS) prot
 
 Parallel NFS (pNFS) is a feature introduced with NFSv4.1 that separates file metadata management from file-data access. The NFS server handles metadata operations and provides clients with information about where file data is stored. Clients can then directly access the data at the dedicated storage devices and data servers, rather than sending all reads and writes through the single server.
 
-The NFS server supplies a layout which describes how each file’s data is arranged and how the client can access it. Depending on the layout and storage configuration, a client may communicate with one or more data servers in parallel. This can increase data-transfer performance and reduce the data-handling load on the metadata server.
+The NFS server supplies a layout which describes how each file’s data is arranged and how the client can access it. Depending on the layout and storage configuration, a client can communicate with one or more data servers in parallel. This increases data-transfer performance and reduce the data-handling load on the metadata server.
 
 pNFS supports several layout types, including File, Block, Object, and Flex Files. Each type describes a different way of mapping file data to underlying storage and a corresponding way for clients to access it. Novus uses the Flex Files layout.
 
@@ -62,16 +62,13 @@ Flex Files is a more recent addition to the layout options. It provides a flexib
 
 There are two major Novus components which are built on the pNFS standard and NetApp's enterprise storage expertise.
 
-[TIP]
-You should be aware that terminology can sometimes vary and be used interchangeably. For example, the Metadata Server (MDS) is a role defined in the NFS standard while the Novus Data Director (NDD) is the implementation of that role within the Novus product architecture. These terms might be used interchangeably depending on the context.
-
 ONTAP data server (ODS)::
 The ONTAP data server implements the Novus data plane. It stores file data and serves it to NFS clients. A Novus namespace can spread its file data across several ODS clusters, and one ODS cluster can serve many namespaces.
 
 Novus Data Director (NDD)::
 The Novus Data Director provides the Novus metadata plane. It manages the namespace metadata, handles client requests for metadata operations, and provides clients with layouts that describe where file data is stored across the ODS clusters. Clients interact with the NDD using NFSv4.2 with pNFS, while the actual file data is accessed directly from the ODS clusters.
 
-Review the link:../get-started/novus-architecture.html[Novus architecture] for more details about these components and how the work together.
+Review the link:../get-started/novus-architecture.html[Novus architecture] for more details about these components and how they work together.
 
 == Additional technology and concepts
 
@@ -84,18 +81,18 @@ Federation::
 Federation is a technique for connecting independent systems so they can work together while remaining separately managed; it can be applied to identity, application services, networks, databases, and other resources. When used with data providers, federation enables users or applications to access data from multiple sources through a unified interface, while the providers retain control of their data—supporting interoperability and reducing the need to centralize or duplicate information.
 
 RonDB::
-RonDB is an open-source, distributed, in-memory database designed for high availability and low-latency access to operational data. It supports horizontal scaling and fault tolerance, helping applications maintain performance and availability as workloads grow. The Novus Data Director uses RonDB as its underlying distributed database. The PMDB gateway is an internal Novus component that facilitates communication between the Novus Data Director and the RonDB distributed database.
+RonDB is an open-source, distributed, in-memory database designed for high availability and low-latency access to operational data. It supports horizontal scaling and fault tolerance, helping applications maintain performance and availability as workloads grow. The Novus Data Director uses RonDB as its underlying distributed database.
 
 Sharding::
-Sharding is a technique for splitting a database’s data across multiple servers, with each server (or shard) storing and serving a portion of the data. It improves capacity and performance by distributing storage and the query load, but can also add complexity to data placement and cross-shard queries.
+Sharding is a technique for splitting a database’s data across multiple servers, with each server storing and serving a portion of the data. It improves capacity and performance by distributing storage and the query load.
 
 Border Gateway Protocol::
-Border Gateway Protocol (BGP) is the routing protocol that exchanges reachability information between autonomous systems—the networks that make up the internet—and selects paths using routing policies and attributes. It may be chosen when an organization needs scalable, policy-controlled routing between multiple networks or internet providers, such as for multihoming or traffic engineering. Novus relies on BGP to support its multi-tenant architecture.
+Border Gateway Protocol (BGP) is the routing protocol that exchanges reachability information between autonomous systems—the networks that make up the internet—and selects paths using routing policies and attributes. Novus relies on BGP to support its multi-tenant architecture.
 
 == Related information
 
 * https://www.rfc-editor.org/info/rfc8435/[RFC 8435: Parallel NFS (pNFS) Flexible File Layout^]
-* https://www.rfc-editor.org/info/rfc7862/[RFC 7862: Network File System (NFS) Version 4 Minor Version 2 Protocol^]
 * https://www.rfc-editor.org/info/rfc8178/[RFC 8178: Rules for NFSv4 Extensions and Minor Versions^]
 * https://www.rfc-editor.org/info/rfc8881/[RFC 8881: Network File System (NFS) Version 4 Minor Version 1 Protocol^]
+* https://www.rfc-editor.org/info/rfc7862/[RFC 7862: Network File System (NFS) Version 4 Minor Version 2 Protocol^]
 * https://www.rondb.com/[RonDB^]

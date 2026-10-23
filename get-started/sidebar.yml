@@ -9,5 +9,5 @@ entries:
       url: /get-started/novus-architecture.html
     - title: Environment and processing
       url: /get-started/novus-environment-processing.html
-  - title: Novus requirements and limitations
-    url: /get-started/requirements-limitations.html
+  - title: Novus requirements
+    url: /get-started/requirements.html

@@ -5,7 +5,7 @@ keywords:
 summary: ""
 ---
 
-= Get started with an NDD assessment
+= Get started with an NDD health check
 :icons: font
 :imagesdir: ../media/
 

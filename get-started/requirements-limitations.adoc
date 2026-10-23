@@ -1,16 +1,16 @@
 ---
 sidebar: sidebar
-permalink: get-started/requirements-limitations.html
+permalink: get-started/requirements.html
 keywords: 
 summary: ""
 ---
 
-= Novus requirements and limitations
+= Novus requirements
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-You should be aware of the Novus requirements and limitations which generally fall into two categories.
+You should be aware of the Novus requirements which generally fall into three categories.
 
 [TIP]
 Also review the product requirements and restrictions at the NetApp Hardware Universe and Interoperability Matrix Tool for more information.
@@ -20,16 +20,16 @@ Also review the product requirements and restrictions at the NetApp Hardware Uni
 There are several requirements and restrictions for the ONTAP data server (ODS) used with Novus. For the initial product release, the ODS is an ONTAP-based AFF platform with Novus-specific hardware enhancements and a constrained software and configuration profile. The supported design is intentionally limited at launch with the major requirements and limitations explicitly identified.
 
 Platform summary::
-ONTAP data server must be deployed on the *AFF A90 FOR NetApp Novus*. This is a special A90 configuration with Novus-specific manufacturing and platform settings. Existing ONTAP controllers cannot be repurposed or upgraded to become a Novus ODS platform.
+ONTAP data server must be deployed on the *AFF A90 for NetApp Novus*. This is a special A90 configuration with Novus-specific manufacturing and platform settings. Existing ONTAP controllers cannot be repurposed or upgraded to become a Novus ODS platform.
 
 ONTAP details::
-ONTAP 9.19.1 P91 or later is required, based on a modified version of the unified ONTAP personality (AFX and ASA r2 are not supported).
+Novus ONTAP data servers run a customized version of ONTAP 9.19.1.
 
 Licensing::
-Novus uses ONTAP ONE. No additional licensing is required.
+Novus uses ONTAP One. No additional licensing is required.
 
 NVRAM and base hardware::
-The ODS requires two NVRAM cards rather than the standard single-card configuration. The system must use the Novus-enabled AFF A90 hardware build, including a factory configuration that identifies the dual-NVRAM ODS-capable variant.
+The ODS requires two NVRAM cards rather than the standard single-card configuration. The system must use the AFF for Novus hardware build, including a factory configuration that identifies the dual-NVRAM ODS-capable variant.
 
 Network hardware::
 The ODS requires CX-7 network cards supporting 400G front-end, 400G HA back-to-back, and 100G cluster back-to-back connectivity.
@@ -48,7 +48,7 @@ The ONTAP data path supports NFSv3 only. Other protocols (NFSv4, SMB, S3, SAN pr
 The Novus Data Director (NDD) is an implementation of the metadata server (MDS) as defined in the Parallel NFS (pNFS) architecture. It's a software-defined package running on properly configured server.
 
 Host platform summary::
-A server the customer or a partner provides that meets NetApp Novus-specific hardware and firmware configurations. Bare metal is the default for the initial release. The hosts need to run RHEL 9 with NVMe drives in RAID1 (2 drives) or RAID10 (4 to 12 drives).
+A server the customer or a partner provides that meets NetApp Novus hardware and firmware configuration requirements. The hosts need to run RHEL 9 with NVMe drives in RAID1 (2 drives) or RAID10 (4 to 12 drives).
 
 Linux and NFS::
 Red Hat Linux 9.8 with NFSv4 (v4.2); pNFS must be enabled and properly configured.
@@ -61,7 +61,7 @@ Each tenant is isolated on its own VLAN and VRF.
 
 == Novus clients
 
-Novus clients are standard NFS clients that connect to the Novus Data Directors using NFSv4 with pNFS. Additionally:
+Novus clients are standard NFS clients that connect to the Novus Data Directors using NFSv4 with pNFS. The following Linux distributions are supported for Novus:
 
 * For pNFS Flexible File Layout with wide striping support:
 ** Ubuntu 26.04
