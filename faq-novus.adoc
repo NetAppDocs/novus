@@ -15,7 +15,7 @@ summary: "This FAQ list provides answers to questions you might have about your 
 [.lead]
 This FAQ list provides answers to questions you might have about your Novus storage system. It also includes concepts and terminology that can be helpful when exploring Novus in more detail.
 
-[big red]*Is the first entry accurate and needed?*
+[big red]*DP: Is the first entry accurate and needed?*
 
 .What protocols does NetApp Novus support?
 
