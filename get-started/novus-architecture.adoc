@@ -12,13 +12,6 @@ summary: ""
 [.lead]
 The Novus architecture consists of instances of the Novus Data Director (NDD) and ONTAP data server (ODS). The ODS supports the data path while the NDD manages metadata and client access through Parallel NFS (pNFS).
 
-//------------------------------------
-WORK THIS IN BELOW:
-
-[TIP]
-You should be aware that terminology can sometimes vary and be used interchangeably. For example, the Metadata Server (MDS) is a role defined in the NFS standard while the Novus Data Director (NDD) is the implementation of that role within the Novus product architecture. These terms might be used interchangeably depending on the context.
-//------------------------------------
-
 == ONTAP data server
 
 The ONTAP data server (ODS) implements the Novus data plane. An ODS is an ONTAP cluster specially built for Novus that stores file data and serves it to NFS clients. A Novus namespace can spread its file data across several ODS clusters, and one ODS cluster can serve many namespaces. This flexibility enables capacity and performance to grow by adding data servers as needed.
@@ -38,7 +31,7 @@ Standard ONTAP clusters can't be used as Novus data servers; only platforms spec
 
 == Novus Data Director
 
-The Novus Data Director (NDD) provides the Novus metadata plane. It's an implementation of the pNFS metadata server (MDS) role in Novus. An MDS host with Novus is one physical server running Linux plus the MDS protocol services and metadata stores.
+The Novus Data Director (NDD) is an implementation of the metadata server (MDS) role in the pNFS architecture and provides the Novus metadata plane. An _MDS host_ is one physical server running Linux plus the MDS protocol services and metadata stores.
 
 The NDD presents each namespace to clients as a single file system. It owns the namespace metadata: files and directories, file attributes, the map of where each file's data is stored, and the protocol state needed to coordinate client access. Clients mount a namespace through its virtual IP address and talk to the NDD using NFSv4.2 with parallel NFS (pNFS). The NDD handles all metadata operations such as lookups, file creates, and attribute changes. When a client opens a file, the NDD gives it a pNFS Flexible File layout, which tells the c lient which data servers hold the file data. The client can then do its reads and writes directly with those ODS clusters; the NDD is in the metadata path but not the data path.
 
