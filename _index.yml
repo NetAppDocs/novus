@@ -10,8 +10,8 @@ indexpage:
           url: /get-started/learn-novus.html
         - title: Novus Architecture
           url: /get-started/novus-architecture.html
-        - title: Requirements and limitations
-          url: /get-started/requirements-limitations.html
+        - title: Requirements
+          url: /get-started/requirements.html
     - title: Use the Novus Data Director
       links: 
         - title: Learn about using the NDD
