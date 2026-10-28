@@ -31,7 +31,7 @@ Yes, NFS Flex Files are supported. For Flex Files with wide striping, you need a
 
 .What are the NFS client requirements for Novus? 
 
-Standard pNFS works with Ubuntu 24.04 or RHEL.
+Standard pNFS works with Ubuntu 26.04 and possibly other Linux distributions depending on whether wide striping is needed. Refer to link:./get-started/requirements.html[Novus requirements] for more details.
 
 .Does Novus require a custom file system client?
 
@@ -49,7 +49,7 @@ Yes--Novus provides secure multitenancy using:
 
 .What is the maximum storage capacity for a Novus cluster?
 
-The initial Novus release supports a cluster size up to 600 AFF A90 instances for a Novus system. The total storage limit for a cluster depends on the size of the drives used.
+The initial Novus release supports up to 600 AFF A90 HA pairs (systems). The total storage limit for a cluster depends on the size of the drives used.
 
 .How is metadata partitioned and protected across Novus Data Directors?
 
