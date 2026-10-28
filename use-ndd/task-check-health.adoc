@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar
-permalink: use_ndd/task-check-health.html
+permalink: use-ndd/task-check-health.html
 keywords: 
 summary: ""
 ---
@@ -18,7 +18,7 @@ This task guides you through checking the health of your Novus Data Director (ND
 
 .Before you begin
 
-You should have access to the NDD command-line interface including the needed permissions to run the `mds-admin` command. Also review link:../use_ndd/learn-use-ndd.html[Learn how to use NDD].
+You should have access to the NDD command-line interface including the needed permissions to run the `mds-admin` command. Also review link:../use-ndd/learn-use-ndd.html[Learn how to use NDD].
 
 .Steps
 

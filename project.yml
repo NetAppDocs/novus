@@ -12,7 +12,7 @@ sidebar:
     url: /index.html
   - section: release-notes
   - section: get-started
-  - section: use_ndd
+  - section: use-ndd
   - section: learn-more
   - title: FAQ
     url: /faq-novus.html

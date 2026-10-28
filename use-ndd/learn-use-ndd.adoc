@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar
-permalink: use_ndd/learn-use-ndd.html
+permalink: use-ndd/learn-use-ndd.html
 keywords: 
 summary: ""
 ---

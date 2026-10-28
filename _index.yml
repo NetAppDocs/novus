@@ -15,9 +15,9 @@ indexpage:
     - title: Use the Novus Data Director
       links: 
         - title: Learn about using the NDD
-          url: /use_ndd/learn-use-ndd.html
+          url: /use-ndd/learn-use-ndd.html
         - title: Assess the health of an NDD instance
-          url: /use_ndd/task-check-health.html
+          url: /use-ndd/task-check-health.html
     - title: Get more information
       links: 
         - title: FAQ for Novus systems
