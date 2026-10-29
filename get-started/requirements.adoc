@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: get-started/requirements.html
-keywords: 
-summary: ""
+keywords: novus requirements, novus hardware, novus software, novus data director, ontap data server, ndd, ods
+summary: "You should be aware of the Novus requirements which generally fall into three categories."
 ---
 
 = Novus requirements

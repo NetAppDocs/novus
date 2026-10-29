@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: get-started/novus-architecture.html
-keywords: 
-summary: ""
+keywords: architecture, novus architecture, mds, ods, hdd
+summary: "The Novus architecture consists of instances of the Novus Data Director (NDD) and ONTAP data server (ODS). The ODS supports the data path while the NDD manages metadata and client access through Parallel NFS (pNFS)."
 ---
 
 = Novus architecture

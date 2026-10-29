@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: learn-more/additional-resources.html
-keywords: 
-summary: ""
+keywords: novus, learn more, additional resources
+summary: "There are additional resources you can access to help administer and support Novus as well as learn more about ONTAP and the related NetApp products and services."
 ---
 = Additional resources for Novus storage systems
 :icons: font

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: release-notes/whats-new-current.html
-keywords: 
-summary: ""
+keywords: novus release notes, novus what's new
+summary: "Learn about the new capabilities included with NetApp Novus."
 ---
 
 = What's new in the initial Novus release

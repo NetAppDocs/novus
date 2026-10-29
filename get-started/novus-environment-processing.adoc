@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: get-started/novus-environment-processing.html
-keywords: 
-summary: ""
+keywords: novus environment, novus processing, ndd, ods
+summary: "There are several important aspects of the Novus environment and its processing that you should understand."
 ---
 
 = Novus environment and processing
