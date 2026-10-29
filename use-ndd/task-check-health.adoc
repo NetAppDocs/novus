@@ -1,0 +1,47 @@
+---
+sidebar: sidebar
+permalink: use-ndd/task-check-health.html
+keywords: get started, cli, novus data director, ndd, health check, mds-admin
+summary: "You can get started using Novus by performing an NDD health check to ensure that your deployment is functioning correctly."
+---
+
+= Get started with an NDD health check
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+You can get started using Novus by performing an NDD health check to ensure that your deployment is functioning correctly.
+
+.About this task
+
+This task guides you through checking the health of your Novus Data Director (NDD) deployment to ensure that all components are functioning correctly.
+
+.Before you begin
+
+You should have access to the NDD command-line interface including the needed permissions to run the `mds-admin` command. Also review link:../use-ndd/learn-use-ndd.html[Learn how to use NDD].
+
+.Steps
+
+. Check the overall health:
++
+`mds-admin status`
+
+. Confirm that all MDS nodes are reachable:
++
+`mds-admin cluster status`
+
+. List the ONTAP data servers:
++
+`mds-admin ds list`
+
+. Display capacity of the data servers:
++
+`mds-admin ds capacity show`
+
+. Run a health check:
++
+`timeout 60 mds-admin doctor`
+
+. Locate where a file's data is stored:
++
+`mds-admin file locate <path>`

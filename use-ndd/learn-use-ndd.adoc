@@ -1,0 +1,100 @@
+---
+sidebar: sidebar
+permalink: use-ndd/learn-use-ndd.html
+keywords: novus data director, ndd, mds, metadata management, ndd cli, ontap data server, ods, mds-admin, ndd-admin
+summary: "The Novus Data Directors (NDD) anchor the Novus metadata layer, managing the distribution and ownership of metadata across the MDS nodes. You can use the NDD command-line interface to perform administrative tasks. Before deploying NetApp Novus in a production environment, it’s essential to understand the administrative structure and configuration options."
+---
+
+= Learn about using the Novus Data Director
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+The Novus Data Directors (NDD) anchor the Novus metadata layer, managing the distribution and ownership of metadata across the MDS nodes. You can use the NDD command-line interface to perform administrative tasks. Before deploying NetApp Novus in a production environment, it’s essential to understand the administrative structure and configuration options.
+
+== Novus command line interface
+
+You administer the Novus Data Director from the Linux command line interface of one of the active MDS hosts. You can connect to an MDS host locally or over SSH. There are two primary tools available at the NDD command-line interface.
+
+mds-admin::
+Operates on a single node instance (one namespace) in several different areas described below. The command connects to the pnfs-mds admin endpoint (port 50051 by default).
+
+ndd-admin::
+Operates on the entire NDD deployment (all hosts and namespaces). You can prepare hosts, provision namespaces, and handle administration and maintenance tasks such as backup and restore as well as key rotation and upgrades. It runs `mds-admin` commands on your behalf as needed.
+
+== Use `mds-admin` to perform Novus administration
+
+You can use the NDD CLI to perform various administrative tasks on the Novus Data Director. These tasks fall into several categories.
+
+[CAUTION]
+Use caution when executing commands at the NDD. Some commands can change system state or carry higher risks. Others, such as the node commands (`force-remove`, `subtree-unlink`, `backup restore`), can cause damage.
+
+Health, diagnostics and support::
+* Determine the NDD cluster status
+* Collect a support bundle and print the protocol version
+* Clean up files and records left behind by any crashes
+* Check or repair the log of `mds-admin` actions
+
+MDS cluster membership and upgrades::
+* Add, drain, detach or remove MDS nodes, and attach standby copies
+* Run rolling upgrades and push config changes one node at a time
+
+Metadata ownership: how the namespace is split across MDS nodes::
+* List, move, split and reassign subtrees between MDS nodes, and approve automatic split proposals
+* Rebalance shards and explain where a path is placed
+
+Data server (ONTAP backend) management::
+* Register, remove, validate and drain data servers, and set their state
+* Check capacity, set placement weights, set multipath addresses and NFS versions, and manage the data-server mounts on the MDS host
+* Claim ownership markers on exports, and keep the inventory of data-server hosts
+
+Data placement and protection::
+* Find which data server holds a file, then move it, remap it, or add a mirror
+* Repair mirrors onto a data server, move mirrors between data servers, and backfill files to the target mirror count
+* Manage the pool of files created ahead of time
+* Turn tiering on or off
+* Turn wide striping on or off for HPC paths
+
+Namespace policy and data management::
+* Set quotas
+* Add metadata tags to paths and search by tag
+* Back up, verify, and restore the metadata catalogue
+
+Clients, tenants and add-on processes::
+* Force client sessions to expire, clean up client recovery records, and manage client identity records
+* Handle VIP routing after recovery
+* Create, pause, resume, snapshot, restore, migrate, and limit tenants
+* Register and limit the resources of helper ("companion") processes
+
+== Getting started using the NDD CLI
+
+You can issue a few basic commands to get started.
+
+.About this task
+
+By default, `mds-admin` connects to the metadata server on the local host (127.0.0.1 at port 50051). To reach a different NDD instance, use the options `--mds-host <address>` with `--mds-port <port>`. Be sure to use host's MDS address and not its management address.
+
+.Before you begin
+
+You need the IP address or hostname of an MDS host and SSH access to it. You also need the appropriate credentials to log in as the root user.
+
+.Steps
+
+. Connect to an MDS host using SSH.
++
+`ssh root@<mds-host>`
+
+. Display the release and protocol version.
++
+`mds-admin -V`
++
+
+. Get help with commands
++
+----
+mds-admin --help
+mds-admin help status
+mds-admin help "ds list"
+----
++
+Note that `--help` lists all available commands and `help <command>` shows the options for a specific command. Place a full multi-word command in double quotes. You can also search by keyword using `mds-admin help -k <keyword>`.
