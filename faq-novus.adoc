@@ -41,7 +41,7 @@ Yes--Novus provides secure multitenancy using:
 
 * Namespace isolation at metadata layer
 * Network isolation through subnet/VLAN
-* Node pools: dedicated Novus Data Director, name space, and KVS
+* Node pools: dedicated Novus Data Director, namespace, and KVS
 * Identity provider and encryption key management per tenant
 * Dedicated Data Servers for tenants 
 

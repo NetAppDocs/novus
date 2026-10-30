@@ -10,7 +10,7 @@ summary: "NetApp Novus is a powerful new storage system built for the demands of
 :imagesdir: ../media/
 
 [.lead]
-NetApp Novus is a powerful new storage system built for the demands of AI at a very large scale. It extends NetApp's experience in enterprise storage to the extremely high-performance infrastructure needed for training and inference. Understanding its administrative structure and configuration options is crucial for effective management and optimal performance.
+NetApp Novus is a powerful storage system built for the demands of AI at a very large scale. It extends NetApp's experience in enterprise storage to the extremely high-performance infrastructure needed for training and inference. Understanding its administrative structure and configuration options is crucial for effective management and optimal performance.
 
 == Overview
 

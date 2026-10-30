@@ -49,7 +49,7 @@ The NDD doesn't ask ONTAP what it stores. It already knows, because it creates e
 
 * Capacity is the only operational value the NDD reads from ONTAP using statvfs() on each mounted export.
 
-* File size isn't verifed against ONTAP. It's determined from the client's layout commit. LAYOUTCOMMIT.
+* File size isn't verified against ONTAP. It's determined from the client's layout commit.
 
 == High-availability and resiliency for the NDD cluster
 
