@@ -5,7 +5,7 @@ keywords: novus release notes, novus what's new
 summary: "Learn about the new capabilities included with NetApp Novus."
 ---
 
-= What's new in the initial Novus release
+= What's new in the initial Novus storage systemrelease
 :icons: font
 :imagesdir: ../media/
 

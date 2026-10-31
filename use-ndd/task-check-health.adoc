@@ -5,7 +5,7 @@ keywords: get started, cli, novus data director, ndd, health check, mds-admin
 summary: "You can get started using Novus by performing an NDD health check to ensure that your deployment is functioning correctly."
 ---
 
-= Get started with an NDD health check
+= Check Novus Data Director health
 :icons: font
 :imagesdir: ../media/
 

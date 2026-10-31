@@ -16,7 +16,7 @@ indexpage:
       links: 
         - title: Learn about using the NDD
           url: /use-ndd/learn-use-ndd.html
-        - title: Assess the health of an NDD instance
+        - title: Assess NDD health
           url: /use-ndd/task-check-health.html
     - title: Get more information
       links: 
