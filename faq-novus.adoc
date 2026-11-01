@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: faq-novus.html
 keywords: novus, novus system, faq, frequently asked questions
-summary: "This FAQ list provides answers to questions you might have about your Novus storage system. It also includes concepts and terminology that can be helpful when exploring Novus in more detail."
+summary: "This FAQ list provides answers to questions you might have about your Novus storage system. It also includes concepts and terminology that can be helpful when exploring the product in more detail."
 ---
 
 = FAQ for Novus storage systems
@@ -13,7 +13,7 @@ summary: "This FAQ list provides answers to questions you might have about your 
 :imagesdir: ./media/
 
 [.lead]
-This FAQ list provides answers to questions you might have about your Novus storage system. It also includes concepts and terminology that can be helpful when exploring Novus in more detail.
+This FAQ list provides answers to questions you might have about your Novus storage system. It also includes concepts and terminology that can be helpful when exploring the product in more detail.
 
 .What protocols does NetApp Novus support?
 
