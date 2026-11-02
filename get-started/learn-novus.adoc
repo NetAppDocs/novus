@@ -80,9 +80,6 @@ A namespace is a logical structure that organizes and identifies resources, allo
 Federation::
 Federation is a technique for connecting independent systems so they can work together while remaining separately managed; it can be applied to identity, application services, networks, databases, and other resources. When used with data providers, federation enables users or applications to access data from multiple sources through a unified interface, while the providers retain control of their data—supporting interoperability and reducing the need to centralize or duplicate information.
 
-RonDB::
-RonDB is an open-source, distributed, in-memory database designed for high availability and low-latency access to operational data. It supports horizontal scaling and fault tolerance, helping applications maintain performance and availability as workloads grow. The Novus Data Director uses RonDB as its underlying distributed database.
-
 Sharding::
 Sharding is a technique for splitting a database’s data across multiple servers, with each server storing and serving a portion of the data. It improves capacity and performance by distributing storage and the query load.
 
@@ -95,4 +92,3 @@ Border Gateway Protocol (BGP) is the routing protocol that exchanges reachabilit
 * https://www.rfc-editor.org/info/rfc8178/[RFC 8178: Rules for NFSv4 Extensions and Minor Versions^]
 * https://www.rfc-editor.org/info/rfc8881/[RFC 8881: Network File System (NFS) Version 4 Minor Version 1 Protocol^]
 * https://www.rfc-editor.org/info/rfc7862/[RFC 7862: Network File System (NFS) Version 4 Minor Version 2 Protocol^]
-* https://www.rondb.com/[RonDB^]

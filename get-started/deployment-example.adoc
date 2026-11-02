@@ -1,0 +1,15 @@
+---
+sidebar: sidebar
+permalink: get-started/deployment-example.html
+keywords: novus, novus deployment, deployment example
+summary: ""
+---
+
+= Novus storage system deployment example
+:icons: font
+:imagesdir: ../media/
+
+[.lead]
+Deployments with 1024 GPUs require a total of three AFF A90 for NetApp Novus storage systems and three Novus Data Director servers to meet the standard performance requirements for current-generation GPUs. Figure 3 above shows the storage system network connectivity for this configuration. Figure 4 below shows the HPS network architecture for a system of this size.
+
+image:novus_arch2.png[Novus architecture]

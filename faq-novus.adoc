@@ -27,10 +27,6 @@ Novus supports the following protocols:
 
 Yes, NFS Flex Files are supported. For Flex Files with wide striping, you need an NFS client in a supported Linux distribution. As of October 2026, only the NFS client provided with Ubuntu 26.04 supports wide striping.
 
-.What are the NFS client requirements for Novus? 
-
-Standard pNFS works with Ubuntu 26.04 and possibly other Linux distributions depending on whether wide striping is needed. Refer to link:./get-started/requirements.html[Novus requirements] for more details.
-
 .Does Novus require a custom file system client?
 
 No. Novus works with standard NFS clients.

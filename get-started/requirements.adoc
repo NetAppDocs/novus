@@ -61,15 +61,7 @@ Each tenant is isolated on its own VLAN and VRF.
 
 == Novus clients
 
-Novus clients are standard NFS clients that connect to the Novus Data Directors using NFSv4 with pNFS. The following Linux distributions are supported for Novus:
-
-* For pNFS Flexible File Layout with wide striping support:
-** Ubuntu 26.04
-* For pNFS Flexible File without wide striping support:
-** Ubuntu 26.04 or 24.04
-** Red Hat Linux 9.8 or 10.2
-
-No additional or custom software is needed beyond what's specified in the standard NFS client requirements.
+The NFS flexible file layout (Flex Files) is supported using standard NFS clients available with Ubuntu 24.04 and later as well as Red Hat Linux 9.8 and later. For Flex Files with striping, only NFS client on Ubuntu 26.04 is supported. No additional or custom software is needed beyond what's specified in the standard NFS client requirements.
 
 == Related information
 
