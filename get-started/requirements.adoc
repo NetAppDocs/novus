@@ -61,7 +61,7 @@ Each tenant is isolated on its own VLAN and VRF.
 
 == Novus clients
 
-The NFS flexible file layout (Flex Files) is supported using standard NFS clients available with Ubuntu 24.04 and later as well as Red Hat Linux 9.8 and later. For Flex Files with striping, only NFS client on Ubuntu 26.04 is supported. No additional or custom software is needed beyond what's specified in the standard NFS client requirements.
+The NFS flexible file layout (Flex Files) is supported using standard NFS clients available with Ubuntu 24.04 and later as well as Red Hat Linux 9.8 and later. For Flex Files with striping, only NFS client on Ubuntu 26.04 is supported.
 
 == Related information
 
