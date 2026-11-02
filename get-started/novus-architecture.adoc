@@ -43,4 +43,4 @@ The placement of data on the ODS clusters is controlled by the NDD. It keeps a r
 
 The following figure illustrates a typical Novus deployment at a high level. Notable aspects include a single namespace with multiple Novus Data Directors and ONTAP data server nodes. This architecture provides high availability and low latency in support of the backend GPU servers.
 
-image:novus_arch1.png[Novus architecture]
+image:novus-arch1.png[Novus architecture]
