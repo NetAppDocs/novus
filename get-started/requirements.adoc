@@ -29,7 +29,7 @@ Licensing::
 Novus uses ONTAP One. No additional licensing is required.
 
 NVRAM and base hardware::
-The ONTAP data server requires two NVRAM cards rather than the standard single-card configuration. The system must use the AFF for Novus hardware build, including a factory configuration that identifies the dual-NVRAM ODS-capable variant.
+The ONTAP data server requires two NVRAM cards rather than the standard single-card configuration. The system must use the AFF for Novus hardware build, including a factory configuration that identifies the dual-NVRAM ONTAP data server variant.
 
 Network hardware::
 The ONTAP data server requires CX-7 network cards supporting 400G front-end, 400G HA back-to-back, and 100G cluster back-to-back connectivity.
@@ -46,6 +46,9 @@ The ONTAP data path supports NFSv3 only. Other protocols (NFSv4, SMB, S3, SAN pr
 == Novus Data Director
 
 The Novus Data Director (NDD) is an implementation of the metadata server (MDS) as defined in the Parallel NFS (pNFS) architecture. It's a software-defined package running on properly configured server.
+
+[NOTE]
+A minimum of three Novus Data Directors is required for a supported deployment. Each must be in a separate failure domain to ensure high availability and fault tolerance. Contact your NetApp account team to determine the right number of AFF A90 systems and NDD servers for your environment and workload.
 
 Host platform summary::
 A server the customer or a partner provides that meets NetApp Novus hardware and firmware configuration requirements. The hosts need to run RHEL 9 with NVMe drives in RAID1 (2 drives) or RAID10 (4 to 12 drives).

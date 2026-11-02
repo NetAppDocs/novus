@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: get-started/deployment-example.html
 keywords: novus, novus deployment, deployment example
-summary: ""
+summary: "A Novus storage system can be deployed in several different configurations depending on your performance and capacity requirements. Here's a simple deployment example."
 ---
 
 = Example of a Novus storage system deployment
@@ -10,16 +10,16 @@ summary: ""
 :imagesdir: ../media/
 
 [.lead]
-A Novus storage system can be deployed in several different configurations depending on your performance and capacity requirements. Here's a simple deployment example.
+A Novus storage system can be deployed in several different configurations depending on your performance and capacity requirements. Here's a simple example using two figures.
 
 == Storage cluster connectivity
 
-Deployments with 1024 GPUs require a total of three AFF A90 for NetApp Novus storage systems and three Novus Data Director (NDD) servers to meet the standard performance requirements for current-generation GPUs. The following figure illustrates the storage system network connectivity for this configuration.
+The following figure illustrates the typical storage system network connectivity needed for a Novus deployment.
 
 image:novus-deploy1.png[Novus deployment 1]
 
 == High performance storage (HPS) network architecture
 
-The following figure illustrates the associated HPS network architecture for a system of this size.
+Deployments with 1024 GPUs require a total of three AFF A90 for NetApp Novus storage systems and three Novus Data Director (NDD) servers to meet the standard performance requirements for current-generation GPUs. The following figure illustrates this configuration along with the associated HPS network architecture for a system of this size.
 
 image:novus-deploy2.png[Novus deployment 2]

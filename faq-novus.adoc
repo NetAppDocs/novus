@@ -39,7 +39,7 @@ Yes--Novus provides secure multitenancy using:
 * Network isolation through subnet/VLAN
 * Node pools: dedicated Novus Data Director, namespace, and KVS
 * Identity provider and encryption key management per tenant
-* Dedicated Data Servers for tenants 
+* Dedicated data servers for tenants 
 
 .What is the maximum storage capacity for a Novus cluster?
 

@@ -1,7 +1,7 @@
 indexpage:
   title: Novus documentation
-  lead: NetApp Novus is a software-defined storage solution designed to meet the unique needs of customers with exascale computing and gigawatt-scale AI factories. It's built on a new architecture based on Parallel NFS (pNFS) with ONTAP data servers. Novus is designed primarily for cloud and hyperscaler environments; it reduces latency and bottlenecks, keeping GPUs busy which dramatically improves performance and scale.
-  summary: NetApp Novus is a software-defined storage solution designed to meet the unique needs of customers with exascale computing and gigawatt-scale AI factories. It's built on a new architecture based on Parallel NFS (pNFS) with ONTAP data servers. Novus is designed primarily for cloud and hyperscaler environments; it reduces latency and bottlenecks, keeping GPUs busy which dramatically improves performance and scale.
+  lead: NetApp Novus is a software-defined storage solution designed to meet the unique needs of customers with exascale computing and gigawatt-scale AI factories. It's built on a new architecture based on parallel NFS (pNFS) with ONTAP data servers. Novus is designed primarily for cloud and hyperscaler environments; it reduces latency and bottlenecks, keeping GPUs busy which dramatically improves performance and scale.
+  summary: NetApp Novus is a software-defined storage solution designed to meet the unique needs of customers with exascale computing and gigawatt-scale AI factories. It's built on a new architecture based on parallel NFS (pNFS) with ONTAP data servers. Novus is designed primarily for cloud and hyperscaler environments; it reduces latency and bottlenecks, keeping GPUs busy which dramatically improves performance and scale.
   keywords: novus, netapp novus, ontap data server, nfs, parallel nfs, pnfs, mds
   tiles:  
     - title: Get started
