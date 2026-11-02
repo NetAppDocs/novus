@@ -19,8 +19,8 @@ Also review the product requirements and restrictions at the NetApp Hardware Uni
 
 There are several requirements and restrictions for the ONTAP data server (ODS) used with Novus. For the initial product release, the ODS is an ONTAP-based AFF platform with Novus-specific hardware enhancements and a constrained software and configuration profile. The supported design is intentionally limited at launch with the major requirements and limitations explicitly identified.
 
-Platform summary::
-ONTAP data server must be deployed on the *AFF A90 for NetApp Novus*. This is a special A90 configuration with Novus-specific manufacturing and platform settings. Existing ONTAP controllers cannot be repurposed or upgraded to become a Novus ODS platform.
+AFF A90 for NetApp Novus::
+This is an AFF A90 system configured specifically for Novus and used as the _ONTAP data server_ in a Novus deployment. Each AFF A90 for NetApp Novus is a two-node, switchless ONTAP HA pair with dual NVRAM and 400GbE host networking.
 
 ONTAP details::
 Novus ONTAP data servers run a customized version of ONTAP 9.19.1.
@@ -61,7 +61,7 @@ Each tenant is isolated on its own VLAN and VRF.
 
 == Novus clients
 
-The NFS flexible file layout (Flex Files) is supported using standard NFS clients available with Ubuntu 24.04 and later as well as Red Hat Linux 9.8 and later. For Flex Files with striping, only NFS client on Ubuntu 26.04 is supported.
+The NFS flexible file layout is supported using standard NFS clients available with Ubuntu 24.04 and later as well as Red Hat Linux 9.8 and later. For Flex Files with striping, only NFS client on Ubuntu 26.04 is supported.
 
 == Related information
 

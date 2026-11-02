@@ -54,9 +54,9 @@ Parallel NFS (pNFS) is a feature introduced with NFSv4.1 that separates file met
 
 The NFS server supplies a layout which describes how each file’s data is arranged and how the client can access it. Depending on the layout and storage configuration, a client can communicate with one or more data servers in parallel. This increases data-transfer performance and reduce the data-handling load on the metadata server.
 
-pNFS supports several layout types, including File, Block, Object, and Flex Files. Each type describes a different way of mapping file data to underlying storage and a corresponding way for clients to access it. Novus uses the Flex Files layout.
+pNFS supports several layout types, including file, block, object, and flexible file. Each type describes a different way of mapping file data to underlying storage and a corresponding way for clients to access it. Novus uses the flexible file layout.
 
-Flex Files is a more recent addition to the layout options. It provides a flexible file-based layout that can describe data stored across multiple data servers and can also support mirrored copies. The client uses the layout information to select an appropriate data-server path for access. This allows deployments to adapt data placement and access behavior to the storage configuration and workload requirements.
+The pNFS flexible file layout is a more recent addition to the layout options. It provides a flexible file-based layout that can describe data stored across multiple data servers and can also support mirrored copies. The client uses the layout information to select an appropriate data-server path for access. This allows deployments to adapt data placement and access behavior to the storage configuration and workload requirements.
 
 === Major components
 
