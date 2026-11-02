@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: get-started/novus-environment-processing.html
-keywords: novus environment, novus processing, ndd, ods
+keywords: novus environment, novus processing, ndd
 summary: "There are several important aspects of the Novus environment and its processing that you should understand."
 ---
 
@@ -12,15 +12,15 @@ summary: "There are several important aspects of the Novus environment and its p
 [.lead]
 There are several important aspects of the Novus environment and its processing that you should understand.
 
-== Novus NDD and ODS internal communication
+== Novus Data Director and ONTAP data server internal communication
 
 The Novus Data Directors communicate with the ONTAP data servers to support file access and management. Most of this is initiated by the NDD rather than the ONTAP servers.
 
-=== ODS discovery
+=== ONTAP data server discovery
 
 The Novus Data Directors need to discover what data servers are available. ONTAP never initiates communication with the Novus Data Director. An operator or a tool registers each data server through the `mds.conf` configuration file, which is used at startup time; data servers can also be manually added using the command `mds-admin ds add`. Each data server is represented as a row in the distributed metadata store including its host, export, ports, state and capacity.
 
-=== ODS availability
+=== ONTAP data server availability
 
 There are several processes used to determine the availability of each ONTAP data server.
 
@@ -34,12 +34,12 @@ Coming back::
 After enough successful probes in succession, it returns to online. A cool down period stops it from flipping back and forth.
 
 Client errors don't count::
-When a client reports an error it's only logged. ODS health is decided by the probes alone.
+When a client reports an error it's only logged. ONTAP data server health is decided by the probes alone.
 
 ONTAP failover is invisible::
 If an ONTAP HA pair does a takeover, the MDS only notices through probe timeouts.
 
-=== ODS data content
+=== ONTAP data server data content
 
 The NDD doesn't ask ONTAP what it stores. It already knows, because it creates every backing file:
 

@@ -49,6 +49,6 @@ The initial Novus release supports up to 600 AFF A90 HA pairs (systems). The tot
 
 Metadata is sharded across node groups, and triple replicated within each node group. A node group is three Data Directors, which is why the metadata layer is always expanded in multiples of three. Sharding is by key range--for example, one node group holds keys A through N and another holds M through Z--so as node groups are added the metadata tables are partitioned across the wider set.
 
-.Can an existing ONTAP AFF A90 cluster be repurposed and used for the Novus ODS?
+.Can an existing ONTAP AFF A90 cluster be repurposed and used for Novus?
 
 No. Existing ONTAP controllers cannot be repurposed or upgraded to use for a Novus deployment. You must acquire a new AFF A90 for NetApp Novus.

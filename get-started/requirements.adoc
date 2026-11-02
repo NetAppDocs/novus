@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: get-started/requirements.html
-keywords: novus requirements, novus hardware, novus software, novus data director, ontap data server, ndd, ods
+keywords: novus requirements, novus hardware, novus software, novus data director, ontap data server, ndd
 summary: "You should be aware of the Novus requirements which generally fall into three categories."
 ---
 
@@ -17,7 +17,7 @@ Also review the product requirements and restrictions at the NetApp Hardware Uni
 
 == ONTAP data server
 
-There are several requirements and restrictions for the ONTAP data server (ODS) used with Novus. For the initial product release, the ODS is an ONTAP-based AFF platform with Novus-specific hardware enhancements and a constrained software and configuration profile. The supported design is intentionally limited at launch with the major requirements and limitations explicitly identified.
+There are several requirements and restrictions for the ONTAP data servers used with Novus. For the initial product release, it is an ONTAP-based AFF platform with Novus-specific hardware enhancements and a constrained software and configuration profile. The supported design is intentionally limited at launch with the major requirements and limitations explicitly identified.
 
 AFF A90 for NetApp Novus::
 This is an AFF A90 system configured specifically for Novus and used as the _ONTAP data server_ in a Novus deployment. Each AFF A90 for NetApp Novus is a two-node, switchless ONTAP HA pair with dual NVRAM and 400GbE host networking.
@@ -29,13 +29,13 @@ Licensing::
 Novus uses ONTAP One. No additional licensing is required.
 
 NVRAM and base hardware::
-The ODS requires two NVRAM cards rather than the standard single-card configuration. The system must use the AFF for Novus hardware build, including a factory configuration that identifies the dual-NVRAM ODS-capable variant.
+The ONTAP data server requires two NVRAM cards rather than the standard single-card configuration. The system must use the AFF for Novus hardware build, including a factory configuration that identifies the dual-NVRAM ODS-capable variant.
 
 Network hardware::
-The ODS requires CX-7 network cards supporting 400G front-end, 400G HA back-to-back, and 100G cluster back-to-back connectivity.
+The ONTAP data server requires CX-7 network cards supporting 400G front-end, 400G HA back-to-back, and 100G cluster back-to-back connectivity.
 
 Cluster size and HA::
-The supported ODS deployment is a single HA pair, implemented as a two-node switchless cluster.
+The supported ONTAP data server deployment is a single HA pair, implemented as a two-node switchless cluster.
 
 SVM requirement::
 Support is limited to one data SVM per cluster.

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar
 permalink: get-started/novus-architecture.html
-keywords: architecture, novus architecture, mds, ods, hdd
-summary: "The Novus architecture consists of instances of the Novus Data Director (NDD) and ONTAP data server (ODS). The ODS supports the data path while the NDD manages metadata and client access through Parallel NFS (pNFS)."
+keywords: architecture, novus architecture, mds, ndd
+summary: "The Novus architecture consists of instances of the Novus Data Director (NDD) and ONTAP data servers. The ONTAP data servers support the data path while the NDD manages metadata and client access through Parallel NFS (pNFS)."
 ---
 
 = Novus storage system architecture
@@ -10,17 +10,17 @@ summary: "The Novus architecture consists of instances of the Novus Data Directo
 :imagesdir: ../media/
 
 [.lead]
-The Novus architecture consists of instances of the Novus Data Director (NDD) and ONTAP data server (ODS). The ODS supports the data path while the NDD manages metadata and client access through Parallel NFS (pNFS).
+The Novus architecture consists of instances of the Novus Data Director (NDD) and ONTAP data servers. The ONTAP data servers support the data path while the NDD manages metadata and client access through Parallel NFS (pNFS).
 
 == ONTAP data server
 
-The ONTAP data server (ODS) implements the Novus data plane. An ODS is an ONTAP cluster specially built for Novus that stores file data and serves it to NFS clients. A Novus namespace can spread its file data across several ODS clusters, and one ODS cluster can serve many namespaces. This flexibility enables capacity and performance to grow by adding data servers as needed.
+The data servers are ONTAP clusters specially built for Novus. They implement the Novus data plane and stores file data and serves it to the NFS clients. A Novus namespace can spread its file data across several ONTAP clusters; one cluster can serve many different namespaces. This flexibility enables capacity and performance to grow by adding data servers as needed.
 
-Clients access the ODS using a standard NFS client with no need for custom NetApp software. After a client gets a file layout from the Novus Data Director, it can read and write file data directly on the ODS over NFSv3 and optionally over RDMA. Bulk data never passes through the Novus Data Director so data traffic travels in parallel across the data servers.
+Clients access the ONTAP data servers using a standard NFS client with no need for custom NetApp software. After a client gets a file layout from the Novus Data Director, it can read and write file data directly on the ONTAP data servers over NFSv3 and optionally over RDMA. Bulk data never passes through the Novus Data Director so data traffic travels in parallel across the data servers.
 
-The ODS doesn't take part in managing the namespace. It stores each file's data as backing files in ONTAP volumes. An ODS doesn't maintain the Novus namespace metadata, such as the directory tree or how files are striped across data servers. 
+The data servers don't take part in managing the namespace. They store each file's data as backing files in ONTAP volumes. An ONTAP data server doesn't maintain the Novus namespace metadata, such as the directory tree or how files are striped across data servers. 
 
-The ODS platform for Novus is the AFF A90 for NetApp Novus; this is a version of the AFF A90 built for Novus. Its characteristics include:
+The AFF A90 for NetApp Novus is a version of the AFF A90 built for Novus running ONTAP. Its characteristics include:
 
 * Additional dual NVRAM cards
 * High-bandwidth network adapters
@@ -33,11 +33,11 @@ Standard ONTAP clusters can't be used as Novus data servers; only platforms spec
 
 The Novus Data Director (NDD) is an implementation of the metadata server (MDS) role in the pNFS architecture and provides the Novus metadata plane. An _MDS host_ is one physical server running Linux plus the MDS protocol services and metadata stores.
 
-The NDD presents each namespace to clients as a single file system. It owns the namespace metadata: files and directories, file attributes, the map of where each file's data is stored, and the protocol state needed to coordinate client access. Clients mount a namespace through its virtual IP address and talk to the NDD using NFSv4.2 with parallel NFS (pNFS). The NDD handles all metadata operations such as lookups, file creates, and attribute changes. When a client opens a file, the NDD gives it a pNFS Flexible File layout, which tells the client which data servers hold the file data. The client can then do its reads and writes directly with those ODS clusters; the NDD is in the metadata path but not the data path.
+The NDD presents each namespace to clients as a single file system. It owns the namespace metadata: files and directories, file attributes, the map of where each file's data is stored, and the protocol state needed to coordinate client access. Clients mount a namespace through its virtual IP address and talk to the NDD using NFSv4.2 with parallel NFS (pNFS). The NDD handles all metadata operations such as lookups, file creates, and attribute changes. When a client opens a file, the NDD gives it a pNFS Flexible File layout, which tells the client which data servers hold the file data. The client can then do its reads and writes directly with the ONTAP data servers; the NDD is in the metadata path but not the data path.
 
 The NDD is implemented as software that runs on a cluster of at least three dedicated servers. It combines the metadata server processes with a replicated, distributed database that stores the namespace metadata on encrypted local storage. Each namespace runs its own metadata server processes on several of these servers. All healthy servers announce the namespace's virtual IP address, which spreads the client load and lets clients fail over without remounting. Because the authoritative metadata lives in the replicated database, a server can fail and restart without losing the namespace state.
 
-The placement of data on the ODS clusters is controlled by the NDD. It keeps a registry of data servers, ensures that each data server is available using lightweight NFS probes, and tracks the free capacity on each. When a file is created, the NDD chooses the data servers, creates the backing files over NFS, and records their locations. If a data server becomes unavailable, the NDD stops placing new data there and recalls client layouts that point to it.
+The placement of data on the ONTAP clusters is controlled by the NDD. It keeps a registry of data servers, ensures that each data server is available using lightweight NFS probes, and tracks the free capacity on each. When a file is created, the NDD chooses the data servers, creates the backing files over NFS, and records their locations. If a data server becomes unavailable, the NDD stops placing new data there and recalls client layouts that point to it.
 
 == Novus deployment
 

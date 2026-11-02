@@ -62,11 +62,11 @@ The pNFS flexible file layout is a more recent addition to the layout options. I
 
 There are two major Novus components which are built on the pNFS standard and NetApp's enterprise storage expertise.
 
-ONTAP data server (ODS)::
-The ONTAP data server implements the Novus data plane. It stores file data and serves it to NFS clients. A Novus namespace can spread its file data across several ODS clusters, and one ODS cluster can serve many namespaces.
+ONTAP data server::
+The ONTAP data server implements the Novus data plane. It stores file data and serves it to NFS clients. A Novus namespace can spread its file data across several ONTAP clusters, and one ONTAP cluster can serve many namespaces.
 
 Novus Data Director (NDD)::
-The Novus Data Director provides the Novus metadata plane. It manages the namespace metadata, handles client requests for metadata operations, and provides clients with layouts that describe where file data is stored across the ODS clusters. Clients interact with the NDD using NFSv4.2 with pNFS, while the actual file data is accessed directly from the ODS clusters.
+The Novus Data Director provides the Novus metadata plane. It manages the namespace metadata, handles client requests for metadata operations, and provides clients with layouts that describe where file data is stored across the ONTAP clusters. Clients interact with the NDD using NFSv4.2 with pNFS, while the actual file data is accessed directly from ONTAP.
 
 Review the link:../get-started/novus-architecture.html[Novus architecture] for more details about these components and how they work together.
 

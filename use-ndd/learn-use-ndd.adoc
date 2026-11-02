@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar
 permalink: use-ndd/learn-use-ndd.html
-keywords: novus data director, ndd, mds, metadata management, ndd cli, ontap data server, ods, mds-admin, ndd-admin
+keywords: novus data director, ndd, mds, metadata management, ndd cli, ontap data server, mds-admin, ndd-admin
 summary: "The Novus Data Directors (NDD) anchor the Novus metadata layer, managing the distribution and ownership of metadata across the MDS nodes. You can use the NDD command-line interface to perform administrative tasks. Before deploying NetApp Novus in a production environment, it’s essential to understand the administrative structure and configuration options."
 ---
 
