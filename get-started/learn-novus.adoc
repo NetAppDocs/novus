@@ -86,6 +86,9 @@ Sharding is a technique for splitting a database’s data across multiple server
 Border Gateway Protocol::
 Border Gateway Protocol (BGP) is the routing protocol that exchanges reachability information between autonomous systems—the networks that make up the internet—and selects paths using routing policies and attributes. Novus relies on BGP to support its multi-tenant architecture.
 
+Scalable distributed metadata store::
+A scalable distributed metadata store is the system managing metadata across multiple nodes, ensuring high availability, fault tolerance, and efficient access. In Novus, the Novus Data Director (NDD) implements a scalable distributed metadata store (or just _metadata store_) to handle namespace metadata and provide clients with layouts for accessing file data.
+
 == Related information
 
 * https://www.rfc-editor.org/info/rfc8435/[RFC 8435: Parallel NFS (pNFS) Flexible File Layout^]

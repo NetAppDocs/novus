@@ -14,7 +14,7 @@ A Novus storage system can be deployed in several different configurations depen
 
 == Storage cluster connectivity
 
-Deployments with 1024 GPUs require a total of three *AFF A90 for NetApp Novus* storage systems and three Novus Data Director (NDD) servers to meet the standard performance requirements for current-generation GPUs. The following figure illustrates the storage system network connectivity for this configuration.
+Deployments with 1024 GPUs require a total of three AFF A90 for NetApp Novus storage systems and three Novus Data Director (NDD) servers to meet the standard performance requirements for current-generation GPUs. The following figure illustrates the storage system network connectivity for this configuration.
 
 image:novus-deploy1.png[Novus deployment 1]
 
