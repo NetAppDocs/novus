@@ -5,7 +5,7 @@ keywords: novus release notes, novus what's new
 summary: "Learn about the new capabilities included with NetApp Novus."
 ---
 
-= What's new in the initial Novus storage systemrelease
+= What's new in the initial Novus storage system release
 :icons: font
 :imagesdir: ../media/
 
@@ -14,7 +14,7 @@ Learn about the new capabilities included with NetApp Novus.
 
 == Novus initial release
 
-NetApp Novus combines the scalability of Parallel NFS (pNFS) with the proven data management capabilities of ONTAP, providing a high-performance storage solution for AI and other data-intensive workloads. It's designed for leading-edge throughput and low latency to meet the requirements of customers with exascale computing and gigawatt-scale AI factories. Review the following pages to learn more about its architecture and deployment requirements.
+NetApp Novus combines the scalability of parallel NFS (pNFS) with the proven data management capabilities of ONTAP, providing a high-performance storage solution for AI and other data-intensive workloads. It's designed for leading-edge throughput and low latency to meet the requirements of customers with exascale computing and gigawatt-scale AI factories. Review the following pages to learn more about its architecture and deployment requirements.
 
 * link:../get-started/learn-novus.html[Learn about Novus]
 * link:../get-started/requirements.html[Novus requirements]
