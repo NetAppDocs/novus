@@ -48,7 +48,7 @@ The ONTAP data path supports NFSv3 only. Other protocols (NFSv4, SMB, S3, SAN pr
 The Novus Data Director (NDD) is an implementation of the metadata server (MDS) as defined in the Parallel NFS (pNFS) architecture. It's a software-defined package running on properly configured server.
 
 [NOTE]
-A minimum of three Novus Data Directors is required for a supported deployment. Each must be in a separate failure domain to ensure high availability and fault tolerance. Contact your NetApp account team to determine the right number of AFF A90 systems and NDD servers for your environment and workload.
+A minimum of three Novus Data Directors is required for a supported deployment. Each must be in a separate failure domain to ensure high availability and fault tolerance. Contact your NetApp account team to determine the right number of AFF A90 for Novus systems and NDD servers for your environment and workload.
 
 Host platform summary::
 A server the customer or a partner provides that meets NetApp Novus hardware and firmware configuration requirements. The hosts need to run RHEL 9 with NVMe drives in RAID1 (2 drives) or RAID10 (4 to 12 drives).
@@ -64,7 +64,7 @@ Each tenant is isolated on its own VLAN and VRF.
 
 == Novus clients
 
-The NFS flexible file layout is supported using standard NFS clients available with Ubuntu 24.04 and later as well as Red Hat Linux 9.8 and later. For Flex Files with striping, only NFS client on Ubuntu 26.04 is supported.
+The NFS flexible file layout is supported using standard NFS clients available with Ubuntu 24.04 and later as well as Red Hat Linux 9.8 and later. For a flexible file layout with striping, only the NFS client on Ubuntu 26.04 is supported.
 
 == Related information
 
