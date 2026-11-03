@@ -1,26 +1,26 @@
 ---
 sidebar: sidebar
 permalink: get-started/novus-environment-processing.html
-keywords: novus environment, novus processing, ndd, ods
+keywords: novus environment, novus processing, ndd
 summary: "There are several important aspects of the Novus environment and its processing that you should understand."
 ---
 
-= Novus environment and processing
+= Novus storage system environment and processing
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
 There are several important aspects of the Novus environment and its processing that you should understand.
 
-== Novus NDD and ODS internal communication
+== Novus Data Director and ONTAP data server internal communication
 
 The Novus Data Directors communicate with the ONTAP data servers to support file access and management. Most of this is initiated by the NDD rather than the ONTAP servers.
 
-=== ODS discovery
+=== ONTAP data server discovery
 
-The Novus Data Directors need to discover what data servers are available. ONTAP never initiates communication with the Novus Data Director. An operator or a tool registers each data server, through the `mds.conf` configuration file which is used at startup time; data servers can also be manually added using the command `mds-admin ds add`. Each data server is represented as a row in the RonDB DS registry including its host, export, ports, state and capacity.
+The Novus Data Directors need to discover what data servers are available. ONTAP never initiates communication with the Novus Data Director. An operator or a tool registers each data server through the `mds.conf` configuration file, which is used at startup time; data servers can also be manually added using the command `mds-admin ds add`. Each data server is represented as a row in the distributed metadata store including its host, export, ports, state and capacity.
 
-=== ODS availability
+=== ONTAP data server availability
 
 There are several processes used to determine the availability of each ONTAP data server.
 
@@ -34,22 +34,22 @@ Coming back::
 After enough successful probes in succession, it returns to online. A cool down period stops it from flipping back and forth.
 
 Client errors don't count::
-When a client reports an error it's only logged. ODS health is decided by the probes alone.
+When a client reports an error it's only logged. ONTAP data server health is decided by the probes alone.
 
 ONTAP failover is invisible::
 If an ONTAP HA pair does a takeover, the MDS only notices through probe timeouts.
 
-=== ODS data content
+=== ONTAP data server data content
 
 The NDD doesn't ask ONTAP what it stores. It already knows, because it creates every backing file:
 
-* When a file is created, the MDS picks the data servers, creates the backing files on them, and saves the result in the stripe map in RonDB. The stripe map records which data server and NFS file handle hold each stripe and mirror.
+* When a file is created, the MDS picks the data servers, creates the backing files on them, and saves the result in the stripe map in the distributed metadata store. The stripe map records which data server and NFS file handle hold each stripe and mirror.
 
 * Backing files on ONTAP have a specific name format in the NDD.
 
 * Capacity is the only operational value the NDD reads from ONTAP using statvfs() on each mounted export.
 
-* File size isn't verifed against ONTAP. It's determined from the client's layout commit. LAYOUTCOMMIT.
+* File size isn't verified against ONTAP. It's determined from the client's layout commit.
 
 == High-availability and resiliency for the NDD cluster
 
@@ -60,16 +60,16 @@ The metadata plane anchored by the Novus Data Directors ensures high availabilit
 Novus uses a multi-host cluster to ensure high availability and fault tolerance for the NDD services.
 
 Three hosts with three failure domains::
-The minimum NDD cluster is three physical hosts or virtual machines (VMs) deployed on separate servers. Each host runs one MDS process and one RonDB data node. The cluster is designed to survive the loss of one host.
+The minimum NDD cluster is three physical hosts or virtual machines (VMs) deployed on separate servers. Each host runs one MDS process and one metadata store node. The cluster is designed to survive the loss of one host.
 
 All replicas serve::
-Every MDS replica handles clients at the same time with none designated in standby mode. All healthy replicas announce the same VIP through BGP. BFD (fast link-failure detection) is required because BGP's own timers alone are not a completely acceptable failover mechanism. A replica announces the VIP only when its NFS service, gateway and RonDB connection are all ready for client handling.
+Every MDS replica handles clients at the same time with none designated in standby mode. All healthy replicas announce the same VIP through BGP. BFD (fast link-failure detection) is required because BGP's own timers alone are not a completely acceptable failover mechanism. A replica announces the VIP only when its NFS service, gateway and metadata store connection are all ready for client handling.
 
 Metadata replication::
-RonDB keeps three synchronous copies. An arbitrator prevents a split-brain scenario by choosing to go unavailable rather than letting two sides both write.
+The distributed metadata store keeps three synchronous copies. An arbitrator prevents a split-brain scenario by choosing to go unavailable rather than letting two sides both write.
 
 Restarts are safe::
-MDS processes keep no state of their own; RonDB holds the authoritative metadata.
+MDS processes keep no state of their own; the distributed metadata store holds the authoritative metadata.
 
 === Limitations and cautions
 

@@ -11,3 +11,5 @@ entries:
       url: /get-started/novus-environment-processing.html
   - title: Novus requirements
     url: /get-started/requirements.html
+  - title: Novus deployment example
+    url: /get-started/deployment-example.html

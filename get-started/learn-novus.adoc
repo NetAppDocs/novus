@@ -5,12 +5,12 @@ keywords: novus, learn more, design, design principles, pnfs, novus components, 
 summary: "NetApp Novus is a powerful new storage system built for the demands of AI at a very large scale. It extends NetApp's experience in enterprise storage to the extremely high-performance infrastructure needed for training and inference. Understanding its administrative structure and configuration options is crucial for effective management and optimal performance."
 ---
 
-= Learn about Novus
+= Learn about Novus storage systems
 :icons: font
 :imagesdir: ../media/
 
 [.lead]
-NetApp Novus is a powerful new storage system built for the demands of AI at a very large scale. It extends NetApp's experience in enterprise storage to the extremely high-performance infrastructure needed for training and inference. Understanding its administrative structure and configuration options is crucial for effective management and optimal performance.
+NetApp Novus is a powerful storage system built for the demands of AI at a very large scale. It extends NetApp's experience in enterprise storage to the extremely high-performance infrastructure needed for training and inference. Understanding its administrative structure and configuration options is crucial for effective management and optimal performance.
 
 == Overview
 
@@ -54,19 +54,19 @@ Parallel NFS (pNFS) is a feature introduced with NFSv4.1 that separates file met
 
 The NFS server supplies a layout which describes how each file’s data is arranged and how the client can access it. Depending on the layout and storage configuration, a client can communicate with one or more data servers in parallel. This increases data-transfer performance and reduce the data-handling load on the metadata server.
 
-pNFS supports several layout types, including File, Block, Object, and Flex Files. Each type describes a different way of mapping file data to underlying storage and a corresponding way for clients to access it. Novus uses the Flex Files layout.
+pNFS supports several layout types, including file, block, object, and flexible file. Each type describes a different way of mapping file data to underlying storage and a corresponding way for clients to access it. Novus uses the flexible file layout.
 
-Flex Files is a more recent addition to the layout options. It provides a flexible file-based layout that can describe data stored across multiple data servers and can also support mirrored copies. The client uses the layout information to select an appropriate data-server path for access. This allows deployments to adapt data placement and access behavior to the storage configuration and workload requirements.
+The pNFS flexible file layout is a more recent addition to the layout options. It provides a flexible file-based layout that can describe data stored across multiple data servers and can also support mirrored copies. The client uses the layout information to select an appropriate data-server path for access. This allows deployments to adapt data placement and access behavior to the storage configuration and workload requirements.
 
 === Major components
 
 There are two major Novus components which are built on the pNFS standard and NetApp's enterprise storage expertise.
 
-ONTAP data server (ODS)::
-The ONTAP data server implements the Novus data plane. It stores file data and serves it to NFS clients. A Novus namespace can spread its file data across several ODS clusters, and one ODS cluster can serve many namespaces.
+ONTAP data server::
+The ONTAP data server implements the Novus data plane. It stores file data and serves it to NFS clients. A Novus namespace can spread its file data across several ONTAP clusters, and one ONTAP cluster can serve many namespaces.
 
 Novus Data Director (NDD)::
-The Novus Data Director provides the Novus metadata plane. It manages the namespace metadata, handles client requests for metadata operations, and provides clients with layouts that describe where file data is stored across the ODS clusters. Clients interact with the NDD using NFSv4.2 with pNFS, while the actual file data is accessed directly from the ODS clusters.
+The Novus Data Director provides the Novus metadata plane. It manages the namespace metadata, handles client requests for metadata operations, and provides clients with layouts that describe where file data is stored across the ONTAP clusters. Clients interact with the NDD using NFSv4.2 with pNFS, while the actual file data is accessed directly from ONTAP.
 
 Review the link:../get-started/novus-architecture.html[Novus architecture] for more details about these components and how they work together.
 
@@ -80,14 +80,14 @@ A namespace is a logical structure that organizes and identifies resources, allo
 Federation::
 Federation is a technique for connecting independent systems so they can work together while remaining separately managed; it can be applied to identity, application services, networks, databases, and other resources. When used with data providers, federation enables users or applications to access data from multiple sources through a unified interface, while the providers retain control of their data—supporting interoperability and reducing the need to centralize or duplicate information.
 
-RonDB::
-RonDB is an open-source, distributed, in-memory database designed for high availability and low-latency access to operational data. It supports horizontal scaling and fault tolerance, helping applications maintain performance and availability as workloads grow. The Novus Data Director uses RonDB as its underlying distributed database.
-
 Sharding::
 Sharding is a technique for splitting a database’s data across multiple servers, with each server storing and serving a portion of the data. It improves capacity and performance by distributing storage and the query load.
 
 Border Gateway Protocol::
 Border Gateway Protocol (BGP) is the routing protocol that exchanges reachability information between autonomous systems—the networks that make up the internet—and selects paths using routing policies and attributes. Novus relies on BGP to support its multi-tenant architecture.
+
+Scalable distributed metadata store::
+A scalable distributed metadata store is the system managing metadata across multiple nodes, ensuring high availability, fault tolerance, and efficient access. In Novus, the Novus Data Director (NDD) implements a scalable distributed metadata store (or just _metadata store_) to handle namespace metadata and provide clients with layouts for accessing file data.
 
 == Related information
 
@@ -95,4 +95,3 @@ Border Gateway Protocol (BGP) is the routing protocol that exchanges reachabilit
 * https://www.rfc-editor.org/info/rfc8178/[RFC 8178: Rules for NFSv4 Extensions and Minor Versions^]
 * https://www.rfc-editor.org/info/rfc8881/[RFC 8881: Network File System (NFS) Version 4 Minor Version 1 Protocol^]
 * https://www.rfc-editor.org/info/rfc7862/[RFC 7862: Network File System (NFS) Version 4 Minor Version 2 Protocol^]
-* https://www.rondb.com/[RonDB^]
