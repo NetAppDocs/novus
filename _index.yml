@@ -1,14 +1,26 @@
 indexpage:
-  title: # Unquoted string 
-  lead: # Quoted string
-  summary: # Quoted string 
-  keywords: # Unquoted comma-delimited list of keywords 
-  tiles: 
-    # Tile definition 
-    - title: # Quoted or unquoted string
+  title: Novus documentation
+  lead: NetApp Novus is a software-defined storage solution designed to meet the unique needs of customers with exascale computing and gigawatt-scale AI factories. It's built on an architecture based on parallel NFS (pNFS) with ONTAP data servers. Novus is designed primarily for cloud and hyperscaler environments; it reduces latency and bottlenecks, keeping GPUs busy which dramatically improves performance and scale.
+  summary: NetApp Novus is a software-defined storage solution designed to meet the unique needs of customers with exascale computing and gigawatt-scale AI factories. It's built on an architecture based on parallel NFS (pNFS) with ONTAP data servers. Novus is designed primarily for cloud and hyperscaler environments; it reduces latency and bottlenecks, keeping GPUs busy which dramatically improves performance and scale.
+  keywords: novus, netapp novus, ontap data server, nfs, parallel nfs, pnfs, mds
+  tiles:  
+    - title: Get started
       links: 
-        # Link definition
-        - title: # Quoted or unquoted string
-          url: # Path to target
-        # Next link on this tile (title/url pair)
-    # Next tile on this page (title/links)
+        - title: Learn about Novus
+          url: /get-started/learn-novus.html
+        - title: Novus Architecture
+          url: /get-started/novus-architecture.html
+        - title: Requirements
+          url: /get-started/requirements.html
+    - title: Use the Novus Data Director
+      links: 
+        - title: Learn about using the NDD
+          url: /use-ndd/learn-use-ndd.html
+        - title: Assess NDD health
+          url: /use-ndd/task-check-health.html
+    - title: Get more information
+      links: 
+        - title: FAQ for Novus systems
+          url: /faq-novus.html
+        - title: Additional resources
+          url: /learn-more/additional-resources.html
